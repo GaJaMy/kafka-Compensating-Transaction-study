@@ -1,0 +1,5 @@
+rootProject.name = 'Kafka-Study'
+
+include 'order-service'
+include 'inventory-service'
+include 'payment-service'

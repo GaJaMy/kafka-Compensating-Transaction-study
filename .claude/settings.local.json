@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(./gradlew projects:*)",
+      "Bash(./gradlew build:*)"
+    ]
+  }
+}
