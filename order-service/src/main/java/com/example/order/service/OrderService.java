@@ -51,7 +51,6 @@ public class OrderService {
      * TODO: 2. Order Entity → OrderResponseDto 변환 후 반환
      */
     public OrderResponseDto getOrder(Long orderId) {
-        // TODO: 구현 필요
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("주문 정보가 업습니다."));
 
@@ -72,7 +71,6 @@ public class OrderService {
      */
     @Transactional
     public void handleInventoryReserved(Long orderId) {
-        // TODO: 구현 필요
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("주문 정보가 없습니다."));
 
@@ -87,7 +85,6 @@ public class OrderService {
      */
     @Transactional
     public void handlePaymentCompleted(Long orderId) {
-        // TODO: 구현 필요
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("주문 정보가 없습니다."));
 
@@ -102,7 +99,6 @@ public class OrderService {
      */
     @Transactional
     public void handleOrderFailed(Long orderId) {
-        // TODO: 구현 필요
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException(""));
 

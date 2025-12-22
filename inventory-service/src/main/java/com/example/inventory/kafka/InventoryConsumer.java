@@ -1,6 +1,7 @@
 package com.example.inventory.kafka;
 
 import com.example.inventory.dto.event.OrderCreatedEvent;
+import com.example.inventory.dto.event.OrderFailedEvent;
 import com.example.inventory.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,11 +32,16 @@ public class InventoryConsumer {
 
     /**
      * order-failed 토픽을 구독하여 주문 실패 이벤트를 처리합니다 (보상 트랜잭션).
-     * TODO: 재고 롤백 로직 구현
+     * TODO: 1. @KafkaListener 설정
+     * TODO: 2. InventoryService.rollbackInventory() 호출
+     * TODO: 3. 실패 사유 로깅
      */
     @KafkaListener(topics = "order-failed", groupId = "inventory-service-group")
-    public void consumeOrderFailedEvent(String message) {
-        // TODO: 구현 필요
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void consumeOrderFailedEvent(OrderFailedEvent event) {
+        inventoryService.rollbackInventory(
+                event.getOrderId(),
+                event.getProductId(),
+                event.getQuantity()
+        );
     }
 }

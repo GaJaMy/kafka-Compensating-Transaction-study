@@ -1,5 +1,7 @@
 package com.example.inventory.kafka;
 
+import com.example.inventory.dto.event.InventoryReservedEvent;
+import com.example.inventory.dto.event.OrderFailedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,9 +19,13 @@ public class InventoryProducer {
      * TODO: kafkaTemplate.send() 사용
      */
     public void sendInventoryReservedEvent(Long orderId, Long productId, Integer quantity) {
-        // TODO: 구현 필요
         // Topic name: "inventory-reserved"
-        throw new UnsupportedOperationException("Not implemented yet");
+        InventoryReservedEvent event = InventoryReservedEvent.builder()
+                .orderId(orderId)
+                .productId(productId)
+                .quantity(quantity)
+                .build();
+        kafkaTemplate.send("inventory-served", event);
     }
 
     /**
@@ -27,8 +33,11 @@ public class InventoryProducer {
      * TODO: 재고 부족 등의 이유로 주문 실패 시 사용
      */
     public void sendOrderFailedEvent(Long orderId, String reason) {
-        // TODO: 구현 필요
         // Topic name: "order-failed"
-        throw new UnsupportedOperationException("Not implemented yet");
+        OrderFailedEvent event = OrderFailedEvent.builder()
+                .orderId(orderId)
+                .reason(reason)
+                .build();
+        kafkaTemplate.send("order-failed", event);
     }
 }
