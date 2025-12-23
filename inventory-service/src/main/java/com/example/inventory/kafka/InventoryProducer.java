@@ -18,14 +18,14 @@ public class InventoryProducer {
      * inventory-reserved 토픽에 재고 예약 완료 이벤트를 발행합니다.
      * TODO: kafkaTemplate.send() 사용
      */
-    public void sendInventoryReservedEvent(Long orderId, Long productId, Integer quantity) {
+    public void sendInventoryReservedEvent(Long orderId, Long userId, Integer amount) {
         // Topic name: "inventory-reserved"
         InventoryReservedEvent event = InventoryReservedEvent.builder()
                 .orderId(orderId)
-                .productId(productId)
-                .quantity(quantity)
+                .userId(userId)
+                .amount(amount)
                 .build();
-        kafkaTemplate.send("inventory-served", event);
+        kafkaTemplate.send("inventory-reserved", event);
     }
 
     /**

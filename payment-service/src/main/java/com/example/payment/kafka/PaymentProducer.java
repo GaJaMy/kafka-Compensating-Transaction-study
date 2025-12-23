@@ -1,5 +1,7 @@
 package com.example.payment.kafka;
 
+import com.example.payment.dto.event.OrderFailedEvent;
+import com.example.payment.dto.event.PaymentCompleteEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,9 +19,12 @@ public class PaymentProducer {
      * TODO: kafkaTemplate.send() 사용
      */
     public void sendPaymentCompletedEvent(Long orderId, Long paymentId) {
-        // TODO: 구현 필요
         // Topic name: "payment-completed"
-        throw new UnsupportedOperationException("Not implemented yet");
+        PaymentCompleteEvent event = PaymentCompleteEvent.builder()
+                .orderId(orderId)
+                .paymentId(paymentId)
+                .build();
+        kafkaTemplate.send("payment-completed", event);
     }
 
     /**
@@ -27,8 +32,11 @@ public class PaymentProducer {
      * TODO: 결제 실패 시 사용
      */
     public void sendOrderFailedEvent(Long orderId, String reason) {
-        // TODO: 구현 필요
         // Topic name: "order-failed"
-        throw new UnsupportedOperationException("Not implemented yet");
+        OrderFailedEvent event = OrderFailedEvent.builder()
+                .orderId(orderId)
+                .reason(reason)
+                .build();
+        kafkaTemplate.send("order-failed", event);
     }
 }

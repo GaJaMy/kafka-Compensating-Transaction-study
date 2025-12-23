@@ -2,12 +2,14 @@ package com.example.payment.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "payments")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Payment {

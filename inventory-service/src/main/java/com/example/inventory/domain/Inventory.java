@@ -17,4 +17,5 @@ public class Inventory {
 
     private Integer quantity;
 
+    private Integer price;
 }

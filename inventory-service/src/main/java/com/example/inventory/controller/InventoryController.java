@@ -14,12 +14,12 @@ public class InventoryController {
     private final InventoryService inventoryService;
 
     /**
-     * 상품의 재고 수량을 조회합니다.
-     * TODO: InventoryService.getInventoryQuantity() 호출
+     * 상품의 재고 정보를 조회합니다.
+     * TODO: 1. InventoryService.getInventory() 호출
+     * TODO: 2. ResponseEntity.ok()로 반환
      */
     @GetMapping("/{productId}")
     public ResponseEntity<InventoryResponseDto> getInventory(@PathVariable Long productId) {
-        // TODO: 구현 필요
-        throw new UnsupportedOperationException("Not implemented yet");
+        return ResponseEntity.ok(inventoryService.getInventory(productId));
     }
 }

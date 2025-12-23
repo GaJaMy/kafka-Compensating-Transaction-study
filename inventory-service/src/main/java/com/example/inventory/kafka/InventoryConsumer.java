@@ -18,7 +18,7 @@ public class InventoryConsumer {
     /**
      * order-created 토픽을 구독하여 주문 생성 이벤트를 처리합니다.
      * TODO: 1. @KafkaListener 설정
-     * TODO: 2. 메시지 파싱 (orderId, productId, quantity)
+     * TODO: 2. 메시지 파싱 (orderId, productId, userId, quantity)
      * TODO: 3. InventoryService.reserveInventory() 호출
      */
     @KafkaListener(topics = "order-created", groupId = "inventory-service-group")
@@ -26,6 +26,7 @@ public class InventoryConsumer {
         inventoryService.reserveInventory(
                 event.getOrderId(),
                 event.getProductId(),
+                event.getUserId(),
                 event.getQuantity()
         );
     }

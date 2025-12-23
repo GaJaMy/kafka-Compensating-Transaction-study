@@ -22,8 +22,7 @@ public class OrderController {
      */
     @PostMapping
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody OrderRequestDto request) {
-        // TODO: 구현 필요
-        throw new UnsupportedOperationException("Not implemented yet");
+        return ResponseEntity.ok(orderService.createOrder(request));
     }
 
     /**
@@ -32,7 +31,6 @@ public class OrderController {
      */
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderResponseDto> getOrder(@PathVariable Long orderId) {
-        // TODO: 구현 필요
-        throw new UnsupportedOperationException("Not implemented yet");
+        return ResponseEntity.ok(orderService.getOrder(orderId));
     }
 }

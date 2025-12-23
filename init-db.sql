@@ -19,9 +19,9 @@ GRANT ALL ON SCHEMA payment_db TO postgres;
 -- 애플리케이션 실행 후 실행할 초기 데이터 삽입 스크립트
 SET search_path TO inventory_db;
 
-INSERT INTO inventory (product_id, quantity) VALUES (1, 100);
-INSERT INTO inventory (product_id, quantity) VALUES (2, 50);
-INSERT INTO inventory (product_id, quantity) VALUES (3, 200);
+INSERT INTO inventory (product_id, quantity, price) VALUES (1, 100, 10000);
+INSERT INTO inventory (product_id, quantity, price) VALUES (2, 50, 25000);
+INSERT INTO inventory (product_id, quantity, price) VALUES (3, 200, 5000);
 */
 
 -- 스키마 확인

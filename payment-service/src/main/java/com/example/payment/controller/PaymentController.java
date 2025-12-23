@@ -19,7 +19,6 @@ public class PaymentController {
      */
     @GetMapping("/order/{orderId}")
     public ResponseEntity<PaymentResponseDto> getPaymentByOrderId(@PathVariable Long orderId) {
-        // TODO: 구현 필요
-        throw new UnsupportedOperationException("Not implemented yet");
+        return ResponseEntity.ok(paymentService.getPaymentByOrderId(orderId));
     }
 }

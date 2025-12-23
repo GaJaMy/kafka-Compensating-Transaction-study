@@ -25,7 +25,7 @@ public class InventoryService {
      * TODO: 6. 실패 시 InventoryProducer.sendOrderFailedEvent 호출
      */
     @Transactional
-    public void reserveInventory(Long orderId, Long productId, Integer quantity) {
+    public void reserveInventory(Long orderId, Long productId, Long userId, Integer quantity) {
         Optional<Inventory> optionalInventory =
                 inventoryRepository.findByProductIdWithLock(productId);
 
@@ -41,7 +41,8 @@ public class InventoryService {
         }
 
         inventory.setQuantity(inventory.getQuantity() - quantity);
-        inventoryProducer.sendInventoryReservedEvent(orderId, inventory.getProductId(), inventory.getQuantity());
+        int amount = quantity * inventory.getPrice();  // 주문 수량 × 단가
+        inventoryProducer.sendInventoryReservedEvent(orderId, userId, amount);
     }
 
     /**

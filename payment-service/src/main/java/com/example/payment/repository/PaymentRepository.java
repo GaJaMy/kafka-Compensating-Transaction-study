@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-    // TODO: 필요한 커스텀 쿼리 메서드 추가 가능
     Optional<Payment> findByOrderId(Long orderId);
 }
